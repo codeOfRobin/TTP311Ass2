@@ -14,7 +14,7 @@ kf=zeros(3,1)
 kb=zeros(3,1)
 Keq=zeros(3,1)
 for i=[1:1:3]
-    kf(i)=A0(i)*exp(-E0/(R*temp))+ Ac(i)*exp(-Ec/(R*temp))*x(2)
+    kf(i)=A0(i)*exp(-E0(i)/(R*temp))+ Ac(i)*exp(-Ec(i)/(R*temp))*x(2)
     Keq(i)=exp((delS(i)/R)-(delH(i)/(R*temp)))
     kb(i)=kf(i)/Keq(i)
 end
@@ -22,7 +22,7 @@ end
 W=W0+P0-x(2);
 dx(1)= -kf(1)*x(1)*W + kb(1)*x(3) - kf(3)*x(2)*x(1) + kb(3)*(x(2)-x(3));
 dx(2)= kf(1)*x(1)*W - kb(1)*x(3) - kf(2)*x(2)*x(2) + kb(2)*(L0-x(1)-x(2))*W;
-dx(3)= kf(1)*x(1)*W - kb(1)*x(3) - 2*kf(2)*x(3)*x(2) + 2*kb(2)*(x(2)-x(3))*W - kf(3)*x(3)*x(1) + kb(3)*x(3);
+dx(3)= kf(1)*x(1)*W - kb(1)*x(3) - 2*kf(2)*x(3)*x(2) + 2*kb(2)*(x(2)-x(3))*W - 2*kf(2)*x(3)*x(1) + kb(3)*x(3);
 
 end
 
